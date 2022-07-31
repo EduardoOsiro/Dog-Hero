@@ -18,4 +18,19 @@ export class DogDatabase extends BaseDatabase {
                throw new CustomError(400, error.sqlMessage)
            }
      }
+
+     public async getWalkInfo (id: string) {
+        try {
+            
+            const result = await BaseDatabase.connection
+            .select('duration')
+            .where({id})
+            .from(DogDatabase.TABLE_NAME)
+
+            return result
+        } catch (error: any) {
+            throw new CustomError(400, error.sqlMessage)
+        }
+     }
+
 }
