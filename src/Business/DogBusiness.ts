@@ -46,6 +46,20 @@ export class DogBusiness {
                throw new CustomError(error.statusCode, error.message)
           }
      }
+
+     public async getWalkInfo (id: string) {
+          try {
+               if (!id) {
+                    throw new CustomError(422, "Id não fornecido.");
+               }
+
+               const response = await this.dogDatabase.getWalkInfo(id)
+
+               return response
+          } catch (error:any ) {
+               throw new CustomError(error.statusCode, error.message)
+          }
+     }
 }
 
 export default new DogBusiness (

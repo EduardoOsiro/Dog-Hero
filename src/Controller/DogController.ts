@@ -21,9 +21,22 @@ export class DogController {
 
                const response = await DogBusiness.createWalk(input)
 
-               res.status(200).send(response)
+               res.status(201).send(response)
           } catch (error:any) {
-               
+               res.status(400).send(error.message)
+          }
+     }
+
+     public async getWalkInfo (req: Request, res: Response) {
+          try {
+               const id = req.params.id
+
+               const response = await DogBusiness.getWalkInfo(id)
+
+               res.status(200).send(response)
+
+          } catch (error:any) {
+               res.status(400).send(error.message)
           }
      }
 }
